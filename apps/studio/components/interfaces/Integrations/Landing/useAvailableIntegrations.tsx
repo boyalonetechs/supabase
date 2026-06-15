@@ -120,6 +120,11 @@ export const useAvailableIntegrations = () => {
                 route: 'overview',
                 label: 'Overview',
               },
+              {
+                route: 'settings',
+                label: 'Settings',
+                layout: 'constrained',
+              },
             ],
             navigate: ({ pageId = 'overview' }) => {
               switch (pageId) {
@@ -128,6 +133,16 @@ export const useAvailableIntegrations = () => {
                     () =>
                       import('@/components/interfaces/Integrations/Integration/MarketplaceIntegrationOverviewTab').then(
                         (mod) => mod.MarketplaceIntegrationOverviewTab
+                      ),
+                    {
+                      loading: Loading,
+                    }
+                  )
+                case 'settings':
+                  return dynamic(
+                    () =>
+                      import('@/components/interfaces/Integrations/Integration/MarketplaceIntegrationSettingsTab').then(
+                        (mod) => mod.MarketplaceIntegrationSettingsTab
                       ),
                     {
                       loading: Loading,
